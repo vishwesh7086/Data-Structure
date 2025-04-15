@@ -1,29 +1,27 @@
-# data-Structure
-# Data Structure Using C
+# Data Structure Experiments in C
 
-Welcome to the **Data Structure Using C** repository!  
-This project is a collection of foundational data structure and algorithm implementations using the C programming language. Each file focuses on a specific concept or technique useful for learning and practice.
+This repository contains a collection of basic data structure experiments written in the C programming language. Each experiment demonstrates a core concept commonly taught in computer science courses.
 
----
+## 🔬 Experiments
 
-## 📂 Files and Descriptions
+| File Name                         | Description |
+|----------------------------------|-------------|
+| `experiment-1(marksaverage).c`   | Calculates the average of marks entered by the user using arrays. |
+| `experiment-2(arrayoperations).c`| Performs basic array operations such as insertion, deletion, and traversal. |
+| `experiment-3(linkedlist).c`     | Implements a singly linked list with functions to insert, delete, and display nodes. |
+| `experiment-4(stackoperations).c`| Demonstrates stack operations (push, pop, display) using arrays. |
+| `experiment-5(insertionsort).c`  | Implements the insertion sort algorithm on an integer array. |
+| `experiment-6(bfs).c`            | Performs Breadth-First Search (BFS) traversal on a graph using an adjacency matrix and queue. |
 
-| File Name         | Description |
-|------------------|-------------|
-| `arrayoperations.c` | Demonstrates basic array operations such as insertion, deletion, and traversal. |
-| `bfs.c`             | Implements **Breadth-First Search (BFS)** algorithm on a graph using adjacency matrix or list. |
-| `insertionsort.c`   | Sorts an array using the **Insertion Sort** algorithm. |
-| `linkedlist.c`      | Implements a **singly linked list** with operations like insertion, deletion, and traversal. |
-| `marksaverage.c`    | Takes student marks as input and calculates the **average**. |
-| `stack2.c`          | Implements a **stack** using arrays with push and pop operations. |
+🧠 Topics Covered
+Arrays and their operations
 
----
+Linked lists
 
-## 🎯 Purpose
+Stack (LIFO) implementation
 
-The aim of this repository is to provide simple, beginner-friendly implementations of data structures and algorithms in C. This can be useful for:
-- Academic learning
-- Practice for technical interviews
-- Understanding the logic behind core data structures
+Sorting algorithms (Insertion Sort)
+
+Graph traversal (BFS)
 
 
