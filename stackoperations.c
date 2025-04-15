@@ -1,144 +1,86 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
-    int info;
+typedef struct node {
+    int data;
     struct node *next;
-} stack;
+} node;
 
-typedef struct {
-    struct node *first;
-} list;
+node *top = NULL;
 
-list *makelist(void) {
-    list *l = (list *)malloc(sizeof(list));
-    l->first = NULL;
-    return l;
+void push(int value) {
+    node *newNode = (node *)malloc(sizeof(node));
+    newNode->data = value;
+    newNode->next = top;
+    top = newNode;
+    printf("%d pushed to stack.\n", value);
 }
 
-void creatlist(list *l, int v) {
-    node *n = (node *)malloc(sizeof(node));
-    n->info = v;
-    n->next = NULL;
+void pop() {
+    if (top == NULL) {
+        printf("Stack is empty. Nothing to pop.\n");
+        return;
+    }
+    node *temp = top;
+    printf("%d popped from stack.\n", top->data);
+    top = top->next;
+    free(temp);
+}
 
-    if (l->first == NULL) {
-        l->first = n;
+void peek() {
+    if (top == NULL) {
+        printf("Stack is empty.\n");
     } else {
-        node *p = l->first;
-        while (p->next != NULL) {
-            p = p->next;
-        }
-        p->next = n;
+        printf("Top element is %d\n", top->data);
     }
 }
 
-void firstnode(list *l, int v) {
-    node *n = (node *)malloc(sizeof(node));
-    n->info = v;
-    n->next = l->first;
-    l->first = n;
-}
-
-void maddnode(list *l, int p, int v) {
-    node *t = l->first;
-    
-    while (t != NULL && t->info != p) {
-        t = t->next;
+void display() {
+    if (top == NULL) {
+        printf("Stack is empty.\n");
+        return;
     }
 
-    if (t != NULL) { 
-        node *n = (node *)malloc(sizeof(node));
-        n->info = v;
-        n->next = t->next;
-        t->next = n;
-    } else {
-        printf("Node with value %d not found.\n", p);
-    }
-}
-
-void laddnode(list *l, int v) {
-    node *n = (node *)malloc(sizeof(node));
-    n->info = v;
-    n->next = NULL;
-
-    if (l->first == NULL) {
-        l->first = n;
-    } else {
-        node *p = l->first;
-        while (p->next != NULL) {
-            p = p->next;
-        }
-        p->next = n;
-    }
-}
-
-void printlist(list *l) {
-    node *t = l->first;
-    while (t != NULL) {
-        printf("%d -> ", t->info);
-        t = t->next;
+    node *temp = top;
+    printf("Stack: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
     }
     printf("NULL\n");
 }
 
-void dellist(list *l, int v) {
-    node *t = l->first, *prev = NULL;
-
-    if (t != NULL && t->info == v) {
-        l->first = t->next;
-        free(t);
-        return;
-    }
-
-    while (t != NULL && t->info != v) {
-        prev = t;
-        t = t->next;
-    }
-
-    if (t == NULL) {
-        printf("Value %d not found in the list.\n", v);
-        return;
-    }
-
-    prev->next = t->next;
-    free(t);
-}
-
 int main() {
-    list *ls;
-    int a, i, v, p;
-    stack* ls;
+    int choice, value;
 
-    ls = makelist();
+    while (1) {
+        printf("\nStack Operations:\n");
+        printf("1. Push\n2. Pop\n3. Peek\n4. Display\n5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-    printf("Enter values in list: ");
-    for (i = 0; i < 5; i++) {
-        scanf("%d", &a);
-        push(ls, a);
+        switch (choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                peek();
+                break;
+            case 4:
+                display();
+                break;
+            case 5:
+                exit(0);
+            default:
+                printf("Invalid choice.\n");
+        }
     }
-    printlist(ls);
-
-    printf("\nEnter first node value: ");
-    scanf("%d", &v);
-    firstnode(ls, v);
-    printlist(ls);
-
-    printf("\nEnter node in the middle:\nEnter previous node value: ");
-    scanf("%d", &p);
-    printf("Enter new node value: ");
-    scanf("%d", &v);
-    maddnode(ls, p, v);
-    printlist(ls);
-
-    printf("\nEnter last node value: ");
-    scanf("%d", &v);
-    laddnode(ls, v);
-    printlist(ls);
-
-    printf("\nEnter value to delete: ");
-    scanf("%d", &v);
-    dellist(ls, v);
-    printlist(ls);
 
     return 0;
 }
+
